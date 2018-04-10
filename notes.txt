@@ -1,0 +1,41 @@
+Output of mpclaim on a server where all paths are OK:
+
+PS C:\Windows\system32> mpclaim -s -d
+
+For more information about a particular disk, use 'mpclaim -s -d #' where # is the MPIO disk number.
+
+MPIO Disk    System Disk  LB Policy    DSM Name
+-------------------------------------------------------------------------------
+MPIO Disk0   Disk 0       RR           Microsoft DSM
+PS C:\Windows\system32> mpclaim -s -d 0
+
+MPIO Disk0: 08 Paths, Round Robin, Symmetric Access
+    Controlling DSM: Microsoft DSM
+    SN: 60060E80129FB80050409FB80000107D
+    Supported Load Balance Policies: FOO RR RRWS LQD WP LB
+
+    Path ID          State              SCSI Address      Weight
+    ---------------------------------------------------------------------------
+    0000000077000003 Active/Optimized   000|000|003|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 141, : 141
+
+    0000000077000002 Active/Optimized   000|000|002|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 4237, : 4237
+
+    0000000077000001 Active/Optimized   000|000|001|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 4236, : 4236
+
+    0000000077000000 Active/Optimized   000|000|000|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 140, : 140
+
+    0000000077010003 Active/Optimized   001|000|003|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 4234, : 4234
+
+    0000000077010002 Active/Optimized   001|000|002|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 4235, : 4235
+
+    0000000077010001 Active/Optimized   001|000|001|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 139, : 139
+
+    0000000077010000 Active/Optimized   001|000|000|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 138, : 138
