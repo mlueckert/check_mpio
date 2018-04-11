@@ -1,0 +1,17 @@
+
+For more information about a particular disk, use 'mpclaim -s -d #' where # is the MPIO disk number.
+
+MPIO Disk    System Disk  LB Policy    DSM Name
+-------------------------------------------------------------------------------
+MPIO Disk11  Disk 11      RRWS         Microsoft DSM
+MPIO Disk10  Disk 10      RR           Microsoft DSM
+MPIO Disk9   Disk 9       RR           Microsoft DSM
+MPIO Disk8   Disk 8       RR           Microsoft DSM
+MPIO Disk7   Disk 7       RR           Microsoft DSM
+MPIO Disk6   Disk 6       RR           Microsoft DSM
+MPIO Disk5   Disk 5       RR           Microsoft DSM
+MPIO Disk4   Disk 4       RR           Microsoft DSM
+MPIO Disk3   Disk 3       RR           Microsoft DSM
+MPIO Disk2   Disk 2       RR           Microsoft DSM
+MPIO Disk1   Disk 1       RR           Microsoft DSM
+MPIO Disk0   Disk 0       RR           Microsoft DSM
