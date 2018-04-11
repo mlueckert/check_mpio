@@ -23,8 +23,11 @@ param(
         return -1
     }
     else{
-        $line = $mpclaim_result -match ("MPIO Disk{0}:" -f $disk)
-        $path_count = [int]$line.split(" ")[2]
+        #Matching for the SCSI address in the path line
+        #Example: 00000000770d0000 Active/Optimized   013|000|000|000   0
+        #                                            -We want to match here
+        $lines = $mpclaim_result -match '(\|[0-9]{3})'
+        $path_count = $lines.count
         return $path_count
     }
 }
@@ -41,7 +44,7 @@ $template = @'
         $lines = $mpclaim_result | Select-String -Pattern "MPIO Disk[0-9]"
         $result = $lines | ConvertFrom-String -TemplateContent $template
         foreach($res in $result){
-            $res | Add-Member -MemberType NoteProperty -Name "Disk_ID" -Value $res.System_Disk.split(" ")[1] -Force
+            $res | Add-Member -MemberType NoteProperty -Name "Disk_ID" -Value $res.MPIO_Disk.split("Disk")[4] -Force
             $path = Get-PathCount -disk ($res.Disk_ID)
             $res | Add-Member -MemberType NoteProperty -Name "Path_Count" -Value $path -Force
         }
@@ -66,9 +69,9 @@ if(Test-MPclaim){
     }
     else{
         foreach($notok_disk in $notok_disks){
-            $result += "DiskID:{0}-PathsAvailable:{1}of{2} " -f $notok_disk.Disk_ID,$notok_disk.Path_Count,$ok_path
+            $result += "</br>DiskID:{0}-PathsAvailable:{1}of{2} " -f $notok_disk.Disk_ID,$notok_disk.Path_Count,$ok_path
         }
-        Write-Output ("WARNING - Some paths are down. | {0}" -f $result)
+        Write-Output ("WARNING - Some paths are down. `n{0}" -f $result)
         Exit $returnStateWarning
     }
 }
