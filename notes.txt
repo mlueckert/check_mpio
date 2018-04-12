@@ -7,11 +7,14 @@ For more information about a particular disk, use 'mpclaim -s -d #' where # is t
 MPIO Disk    System Disk  LB Policy    DSM Name
 -------------------------------------------------------------------------------
 MPIO Disk0   Disk 0       RR           Microsoft DSM
+
+Output for Disk0 with 8 paths.
+
 PS C:\Windows\system32> mpclaim -s -d 0
 
 MPIO Disk0: 08 Paths, Round Robin, Symmetric Access
     Controlling DSM: Microsoft DSM
-    SN: 60060E80129FB80050409FB80000107D
+    SN: 60060E80129FB80050409GG80000107D
     Supported Load Balance Policies: FOO RR RRWS LQD WP LB
 
     Path ID          State              SCSI Address      Weight
