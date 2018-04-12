@@ -10,7 +10,9 @@
     PS C:\> check_mpio.ps1 -Ok_Path 4
     Checks if all disks have 4 paths available
 .PARAMETER Ok_Path
-    Number of paths that must be available
+    Number of paths that must be available.
+.PARAMETER NoArgs
+    Only used as a dummy as NSClient sends some characters even there are no arguments defined.
 #>
 Param (
 $NoArgs = "", #Only used as a dummy as NSClient sends some characters even there are no arguments defined.
@@ -47,7 +49,7 @@ param(
 }
 
 function Get-MPIODisks(){
-    #Function that returns an object representing the output of mpclaim -s -d
+#Function that returns an object representing the output of mpclaim -s -d
 $template = @'
 {[string]MPIO_Disk*:MPIO Disk4}  {[string]System_Disk:Disk 4}       {[string]LB_Policy:RR}           {[string]DSM_Name:Microsoft DSM}
 {[string]MPIO_Disk*:MPIO Disk0}  {[string]System_Disk:Disk 0}       {[string]LB_Policy:VS}           {[string]DSM_Name:IBM SDDDSM}
