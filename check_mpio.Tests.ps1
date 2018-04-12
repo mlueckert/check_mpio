@@ -23,4 +23,13 @@ Describe -Name "check_mpio Tests" {
         }     
         . .\check_mpio.ps1 | Should -Match "WARNING - Some paths are down."
     }
+    It "Parameter -Ok_Path is working" {
+        Mock Test-MPclaim { return $true}
+        Mock Invoke-MPclaim { return Get-Content .\mpclaim_result_ok.txt} -ParameterFilter { $param1 -eq "-s" -and $param2 -eq "-d" -and $param3 -eq ""}
+        foreach ($disk in 0..20) {
+            $result_content = Get-Content .\mpclaim_result_disk0
+            Mock Invoke-MPclaim { return $result_content[0..($result_content.Length-4)]} -ParameterFilter { $param1 -eq "-s" -and $param2 -eq "-d" -and $param3 -eq $disk}
+        }     
+        . .\check_mpio.ps1 -Ok_Path 7 | Should -Be "OK - All 12 disk(s) have 7 paths each."
+    }
 }

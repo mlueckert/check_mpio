@@ -1,3 +1,17 @@
+<#
+.Synopsis
+   Checks for available MPIO paths.
+.DESCRIPTION
+   Gathers the output of mpclaim.exe to determine if all paths are available.
+.EXAMPLE
+    PS C:\> check_mpio.ps1
+    Checks if all disks have 8 paths available
+.EXAMPLE
+    PS C:\> check_mpio.ps1 -Ok_Path 4
+    Checks if all disks have 4 paths available
+.PARAMETER Ok_Path
+    Number of paths that must be available
+#>
 Param (
 $NoArgs = "", #Only used as a dummy as NSClient sends some characters even there are no arguments defined.
 $Ok_Path = 8
