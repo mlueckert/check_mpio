@@ -4,8 +4,7 @@
 - The output is formatted to be used with Nagios/Naemon
 
 # NSClient++
-To use the check in NSClient++, add the following line to the nsclient.ini section
+To use the check in NSClient++, add the following line to the nsclient.ini section ```[/settings/external scripts/scripts]```
 ```
-[/settings/external scripts/scripts]
 check_mpio = cmd /c echo bcustoms\\check_mpio.ps1 $ARG1$; exit($lastexitcode) | powershell.exe -ExecutionPolicy Bypass -NoProfile -NoLogo -command -
 ```
