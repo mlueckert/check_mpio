@@ -87,7 +87,7 @@ if(Test-MPclaim){
         foreach($notok_disk in $notok_disks){
             $result += "</br>DiskID:{0}-PathsAvailable:{1}of{2} " -f $notok_disk.Disk_ID,$notok_disk.Path_Count,$ok_path
         }
-        Write-Output ("WARNING - Some paths are down. `n{0}" -f $result)
+        Write-Output ("WARNING - Some mpio storage paths are down. `n{0}" -f $result)
         Exit $returnStateWarning
     }
 }

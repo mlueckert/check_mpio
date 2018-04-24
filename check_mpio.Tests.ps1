@@ -21,7 +21,7 @@ Describe -Name "check_mpio Tests" {
             $result_content = Get-Content .\mpclaim_result_disk0
             Mock Invoke-MPclaim { return $result_content[0..($result_content.Length-4)]} -ParameterFilter { $param1 -eq "-s" -and $param2 -eq "-d" -and $param3 -eq $disk}
         }     
-        . .\check_mpio.ps1 | Should -Match "WARNING - Some paths are down."
+        . .\check_mpio.ps1 | Should -Match "WARNING - Some mpio storage paths are down."
     }
     It "Parameter -Ok_Path is working" {
         Mock Test-MPclaim { return $true}
