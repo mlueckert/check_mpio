@@ -1,0 +1,10 @@
+
+For more information about a particular disk, use 'mpclaim -s -d #' where # is the MPIO disk number.
+
+MPIO Disk    System Disk  LB Policy    DSM Name
+-------------------------------------------------------------------------------
+MPIO Disk4   Disk 4       VS           IBM SDDDSM
+MPIO Disk3   Disk 3       VS           IBM SDDDSM
+MPIO Disk2   Disk 2       VS           IBM SDDDSM
+MPIO Disk1   Disk 1       VS           IBM SDDDSM
+MPIO Disk0   Disk 0       VS           IBM SDDDSM

@@ -1,0 +1,8 @@
+
+MPIO Disk0: 08 Paths, Vendor-Specific, Implicit Only
+    Controlling DSM: IBM SDDDSM
+    SN: 60050768018200D57800000000000849
+    Supported Load Balance Policies: VS
+
+    Path ID          State              SCSI Address      Weight
+    ---------------------------------------------------------------------------
