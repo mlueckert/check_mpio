@@ -16,11 +16,14 @@
 .PARAMETER RequireMicrosoftDSM
     If set to true, all paths where another mpio driver is controlling the paths will
     be reported WARNING because mpclaim cannot determine the path details but only the total path count.
+.PARAMETER BeCritical
+    If set, the check will return a CRITICAL state if paths are down.
 #>
 Param (
 $NoArgs = "", #Only used as a dummy as NSClient sends some characters even there are no arguments defined.
 $Ok_Path = 8,
-[Switch]$RequireMicrosoftDSM
+[Switch]$RequireMicrosoftDSM,
+[Switch]$BeCritical
 )
 
 $returnStateOK = 0
@@ -132,8 +135,15 @@ if(Test-MPclaim){
         foreach($notok_disk in $notok_disks){
             $result += "</br>DiskID:{0}-PathsAvailable:{1}of{2} " -f $notok_disk.Disk_ID,$notok_disk.Path_Count,$ok_path  
         }
-        Write-Output ("WARNING - Some mpio storage paths are down. `n{0}{1}" -f $result,$nonMSDSMDisks)
-        Exit $returnStateWarning
+        $WarnCritText = "Some mpio storage paths are down."
+        if($BeCritical){
+            Write-Output ("CRITICAL - {0} `n{1}{2}" -f $WarnCritText,$result,$nonMSDSMDisks)
+            Exit $returnStateCritical
+        }
+        else{
+            Write-Output ("WARNING - {0} `n{1}{2}" -f $WarnCritText,$result,$nonMSDSMDisks)
+            Exit $returnStateWarning
+        }
     }
 }
 else{
