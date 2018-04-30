@@ -1,0 +1,9 @@
+
+Failed to open handle in Supported Policies info.  Error 1068
+Failed to open handle in Supported Policies info.  Error 1068
+Failed to open handle in Supported Policies info.  Error 1068
+Failed to open handle in Supported Policies info.  Error 1068
+Failed to open handle in Supported Policies info.  Error 1068
+Failed to open handle in Supported Policies info.  Error 1068
+Failed to open handle in Supported Policies info.  Error 1068
+No MPIO disks are present.
