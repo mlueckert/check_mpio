@@ -67,4 +67,12 @@ Describe -Name "check_mpio Tests" {
         . .\check_mpio.ps1 -RequireMicrosoftDSM | Should -Match "WARNING - Some mpio storage paths are down"
         $LASTEXITCODE | Should -Be 1
     }
+    It "No MPIO disks present" {
+        Mock Test-MPclaim { return $true}
+        Mock Test-MPIODisks { return $false}
+        Mock Invoke-MPclaim { return Get-Content .\mpclaim_output\mpclaim_no_disks_error.txt} -ParameterFilter { $param1 -eq "-s" -and $param2 -eq "-d" -and $param3 -eq ""}
+     
+        . .\check_mpio.ps1 | Should -Match "WARNING - No MPIO disks are present."
+        $LASTEXITCODE | Should -Be 1
+    }
 }

@@ -99,12 +99,26 @@ $template = @'
         return $result
     }
 
+function Test-MPIODisks{
+    #Checks whether mpclaim reports no mpio disks are present
+    $mpclaim_result = Invoke-MPclaim -param1 "-s" -param2 "-d" -param3 ""
+    if(($mpclaim_result | Out-String) -notmatch "No MPIO disks are present."){
+        return $true
+    }
+    return $false
+}
+
 function Test-MPclaim{
 #Checks whether mpclaim.exe is available.
     return Test-Path "$env:systemroot\System32\mpclaim.exe"
 }
 
-if(Test-MPclaim){
+if(-not (Test-MPclaim)){
+    Write-Output "UNKNOWN - mpclaim.exe not found. Is the feature MultiPathIO enabled?"
+    Exit $returnStateUnknown
+}
+
+if(Test-MPIODisks){
 
     $all_disks = Get-MPIODisks
     $notok_disks = $all_disks | where {$_.Path_Count -ne $ok_path}
@@ -147,6 +161,6 @@ if(Test-MPclaim){
     }
 }
 else{
-    Write-Output "UNKNOWN - mpclaim.exe not found. Is the feature MultiPathIO enabled?"
-    Exit $returnStateUnknown
+    Write-Output "WARNING - No MPIO disks are present."
+    Exit $returnStateWarning
 }
